@@ -10,14 +10,11 @@
 # 123456 -> no
 
 num = input('Введите шестизначный номер билета: ')
-n0 = int(num[0])
-n1 = int(num[1])
-n2 = int(num[2])
-n3 = int(num[3])
-n4 = int(num[4])
-n5 = int(num[5])
+print(num)
+nl = int(num[0]) + int(num[1]) + int(num[2])
+nr = int(num[3]) + int(num[4]) + int(num[5])
 
-if n0 + n1 + n2 == n3 + n4 + n5:
+if nl == nr:
     print('YES')
 else:
     print('NO')
