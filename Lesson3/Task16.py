@@ -6,8 +6,9 @@ list = [randint(1, 10) for i in range(n)]
 print(list)
 count = 0
 x = int(input('Введите проверяемое число: '))
-for i in range(n):
-    if list[i] == x:
+
+for i in list:
+    if i == x:
         count += 1
 print(list)
 print(f'{x}\n=> {count}')
