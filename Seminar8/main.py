@@ -5,6 +5,7 @@ print('режимы работы\n'
       '2 - найти контакт\n'
       '3 - изменить или удалить контакт\n'
       '4 - просмотр телефонной книги\n'
+      '5 - нумератор\n'
       '0 - выход')
 
 
@@ -13,11 +14,13 @@ while True:
     if mode == '1':
         create_data()
     elif mode == '2':
-        print(search_user(read_data()))
+        search_user()
     elif mode == '3':
-        change_user()
+        print(ren_del_user())
     elif mode == '4':
         print(read_data())
+    elif mode == '5':
+        print(numerate())
     elif mode == '0':
         break
     else:
