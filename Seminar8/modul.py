@@ -22,38 +22,44 @@ def read_data():
         for i, line in enumerate(data, start=1):
             if line.strip():
                 print(i, line)
+    time.sleep(1)
 
 
 def search_user():
     with open(TXTFILE, 'r', encoding='utf-8') as book:
         data = list(str(book.read()).split('\n'))
         searching_data = input('Введите данные поиска: ')
-        # user = list()
-        for pos, el in enumerate(data):
+        for pos, el in enumerate(data, start=1):
             if searching_data.lower() in el.lower():
                 print(pos, el)
         index = int(input('Введите соответствующий номер строки: '))
+        print(data[index - 1])
         action = input('Выберите действие:\n'
                        'd - удалить контакт\n'
                        'r - изменить контакт\n'
-                       'o - я чисто посмотреть\n')
+                       'o - я просто посмотреть\n')
         if action == 'd':
-            del data[index]
-            print(f'Контакт {data[index]} удалён!')
-            with open(TXTFILE, 'w', encoding='utf-8') as book:
-                for line in data:
-                    book.write(f'{str(line)}\n')
-        time.sleep(1)
-        if action == 'r':
-            rename_contact = new_contact()
-            print(f'Контакт {data[index]} изменён!')
-            data[index] = rename_contact
-            with open(TXTFILE, 'w', encoding='utf-8') as book:
-                for line in data:
-                    book.write(f'{str(line)}\n')
-        time.sleep(1)
+            return del_user(data, index, TXTFILE)
+        elif action == 'r':
+            return rename_user(data, index, TXTFILE)
+        elif action == 'o':
+            return print('До свидания!')
 
 
-def ren_del_user():
-    print(search_user())
-    pass
+def del_user(data, index, TXTFILE):
+    del data[index - 1]
+    print(f'Контакт {data[index - 1]} удалён!')
+    with open(TXTFILE, 'w', encoding='utf-8') as book:
+        for line in data:
+            book.write(f'{str(line)}\n')
+    time.sleep(1)
+
+
+def rename_user(data, index, TXTFILE):
+    rename_contact = new_contact()
+    print(f'Контакт {data[index]} изменён!')
+    data[index] = rename_contact
+    with open(TXTFILE, 'w', encoding='utf-8') as book:
+        for line in data:
+            book.write(f'{str(line)}\n')
+    time.sleep(1)
